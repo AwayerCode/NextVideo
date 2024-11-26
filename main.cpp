@@ -1,18 +1,22 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
-#include "chatcontroller.h"
+#include <QQuickStyle>
+#include "videocontroller.h"
 
 int main(int argc, char *argv[])
 {
+    qputenv("QT_QPA_PLATFORM", "xcb");
+    
     QGuiApplication app(argc, argv);
 
-    QQmlApplicationEngine engine;
-    
-    ChatController chatController;
-    engine.rootContext()->setContextProperty("chatController", &chatController);
+    qmlRegisterType<VideoController>("VideoAnalyzer", 1, 0, "VideoController");
 
-    const QUrl url(u"qrc:/main.qml"_qs);
+    QQmlApplicationEngine engine;
+
+    engine.addImportPath("qrc:/");
+    
+    const QUrl url(u"qrc:/VideoAnalyzer.qml"_qs);
     engine.load(url);
 
     if (engine.rootObjects().isEmpty())

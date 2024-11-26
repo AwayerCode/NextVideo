@@ -8,7 +8,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Widgets Multimedia MultimediaWidgets)
+find_package(Qt6 REQUIRED COMPONENTS Widgets Multimedia MultimediaWidgets Quick QuickControls2 Qml QuickDialogs2 QuickDialogs2QuickImpl)
 find_package(PkgConfig REQUIRED)
 
 execute_process(
@@ -28,12 +28,17 @@ pkg_check_modules(FFMPEG REQUIRED
 
 set(INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
+# 添加QML资源文件
+set(QML_RESOURCES
+    qml.qrc
+)
+
+# 明确指定源文件路径
 add_executable(ffmpeg_test_tool
-    src/main.cpp
-    src/mainwindow.cpp
-    src/ffmpeg_wrapper.cpp
-    include/mainwindow.h
-    include/ffmpeg_wrapper.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/videocontroller.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/ffmpeg_wrapper.cpp
+    ${QML_RESOURCES}
 )
 
 target_include_directories(ffmpeg_test_tool PRIVATE
@@ -45,11 +50,17 @@ target_include_directories(ffmpeg_test_tool PRIVATE
     ${QT_HEADERS_DIR}/QtGui
     ${QT_HEADERS_DIR}/QtMultimedia
     ${QT_HEADERS_DIR}/QtMultimediaWidgets
+    ${QT_HEADERS_DIR}/QtQuick
 )
 
 target_link_libraries(ffmpeg_test_tool PRIVATE
     Qt6::Widgets
     Qt6::Multimedia
     Qt6::MultimediaWidgets
+    Qt6::Quick
+    Qt6::QuickControls2
+    Qt6::Qml
+    Qt6::QuickDialogs2
+    Qt6::QuickDialogs2QuickImpl
     ${FFMPEG_LIBRARIES}
 ) 
