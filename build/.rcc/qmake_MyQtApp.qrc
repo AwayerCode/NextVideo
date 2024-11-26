@@ -1,6 +1,0 @@
-<RCC>
-  <qresource prefix="/MyQtApp">
-    <file alias="qmldir">/home/guoxudong/git/NextVideo/build/MyQtApp/qmldir</file>
-  </qresource>
-</RCC>
-

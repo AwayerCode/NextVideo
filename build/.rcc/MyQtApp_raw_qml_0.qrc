@@ -1,7 +1,0 @@
-<RCC>
-  <qresource prefix="/MyQtApp/">
-    <file alias="qml/main.qml">/home/guoxudong/git/NextVideo/qml/main.qml</file>
-    <file alias="qml/components/CustomButton.qml">/home/guoxudong/git/NextVideo/qml/components/CustomButton.qml</file>
-  </qresource>
-</RCC>
-

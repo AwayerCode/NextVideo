@@ -1,0 +1,48 @@
+# Qt 特定文件
+*.user
+*.user.*
+*.moc
+moc_*.cpp
+qrc_*.cpp
+ui_*.h
+*.qmlc
+*.jsc
+*_qmlcache.qrc
+
+# CMake 构建目录
+build/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
+_deps/
+
+# IDE 配置文件
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# 编译输出
+bin/
+debug/
+release/
+*.o
+*.obj
+*.dll
+*.so
+*.dylib
+*.lib
+*.a
+*.exe
+*.app
+
+# 操作系统文件
+.DS_Store
+.directory
+Thumbs.db
+
+# 临时文件
+*.swp
+*~
+*.autosave 

@@ -4,7 +4,9 @@ project(MyQtApp VERSION 1.0 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# 找到所需的 Qt 组件
+message(STATUS "Qt6_DIR: $ENV{Qt6_DIR}")
+message(STATUS "CMAKE_PREFIX_PATH: ${CMAKE_PREFIX_PATH}")
+
 find_package(Qt6 REQUIRED COMPONENTS Quick Core Qml QmlWorkerScript)
 
 # 设置自动处理 MOC、UIC、RCC
