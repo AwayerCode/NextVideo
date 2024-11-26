@@ -1,0 +1,5 @@
+module MyQtApp
+typeinfo MyQtApp.qmltypes
+prefer :/MyQtApp/
+CustomButton 1.0 qml/components/CustomButton.qml
+
