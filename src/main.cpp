@@ -1,6 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
+#include <QDir>
 #include "backend.h"
 
 int main(int argc, char *argv[])
@@ -12,8 +13,11 @@ int main(int argc, char *argv[])
     Backend backend;
     engine.rootContext()->setContextProperty("backend", &backend);
 
-    const QUrl url(u"qrc:/MyQtApp/qml/main.qml"_qs);
+    const QUrl url = QUrl::fromLocalFile(QDir::currentPath() + "/qml/MainWindow.qml");
     engine.load(url);
+
+
+
 
     if (engine.rootObjects().isEmpty())
         return -1;

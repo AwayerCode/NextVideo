@@ -19,7 +19,7 @@ set(PROJECT_SOURCES
     src/main.cpp
     src/backend.h
     src/backend.cpp
-    qml/main.qml
+    qml/MainWindow.qml
     qml/components/CustomButton.qml
 )
 
@@ -35,7 +35,7 @@ qt_add_qml_module(MyQtApp
     URI MyQtApp
     VERSION 1.0
     QML_FILES
-        qml/main.qml
+        qml/MainWindow.qml
         qml/components/CustomButton.qml
 )
 
