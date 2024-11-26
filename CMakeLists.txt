@@ -29,6 +29,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 # 添加可执行文件
 qt_add_executable(MyQtApp ${PROJECT_SOURCES})
 
+qt_policy(SET QTP0001 NEW)
 # 添加 QML 模块
 qt_add_qml_module(MyQtApp
     URI MyQtApp
@@ -58,3 +59,49 @@ set_target_properties(MyQtApp PROPERTIES
     WIN32_EXECUTABLE TRUE
     MACOSX_BUNDLE TRUE
 ) 
+
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+
+function(copy_qt_dependencies TARGET_NAME)
+    if(WIN32)
+        get_target_property(QT_QMAKE_EXECUTABLE Qt6::qmake IMPORTED_LOCATION)
+        get_filename_component(QT_BIN_DIR "${QT_QMAKE_EXECUTABLE}" DIRECTORY)
+        
+        # 添加调试信息
+        message(STATUS "正在配置Qt依赖部署...")
+        message(STATUS "Qt Bin目录: ${QT_BIN_DIR}")
+        message(STATUS "目标文件目录: $<TARGET_FILE_DIR:${TARGET_NAME}>")
+        
+        add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E echo "开始部署Qt依赖..."
+            # 确保QML目录存在
+            COMMAND ${CMAKE_COMMAND} -E make_directory "$<TARGET_FILE_DIR:${TARGET_NAME}>/qml"
+            # 运行windeployqt
+            COMMAND "${QT_BIN_DIR}/windeployqt.exe"
+                    --verbose 2
+                    --qmldir "${CMAKE_SOURCE_DIR}/qml"
+                    --no-compiler-runtime
+                    --no-opengl-sw
+                    --dir "$<TARGET_FILE_DIR:${TARGET_NAME}>"
+                    "$<TARGET_FILE:${TARGET_NAME}>"
+            COMMENT "正在部署Qt依赖..."
+        )
+    endif()
+endfunction()
+
+# 添加QML模块复制函数
+function(copy_qml_files TARGET_NAME)
+    # 复制QML文件到输出目录
+    add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+            "${CMAKE_SOURCE_DIR}/qml"
+            "$<TARGET_FILE_DIR:${TARGET_NAME}>/qml"
+        COMMENT "正在复制QML文件..."
+    )
+endfunction()
+
+# 在主目标后调用这些函数
+copy_qt_dependencies(${PROJECT_NAME})
+copy_qml_files(${PROJECT_NAME})
