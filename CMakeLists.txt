@@ -43,9 +43,8 @@ target_link_libraries(MyQtApp PRIVATE
 )
 
 # Windows 可执行文件设置
-set_target_properties(MyQtApp PROPERTIES
-    WIN32_EXECUTABLE TRUE
-)
+set(CMAKE_WIN32_EXECUTABLE OFF)
+
 
 # 设置输出目录
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
