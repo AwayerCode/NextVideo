@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(Qt6_DIR "D:/Qt/6.8.0/msvc2022_64")
 set(CMAKE_PREFIX_PATH "D:/Qt/6.8.0/msvc2022_64")
 
-find_package(Qt6 REQUIRED COMPONENTS Quick Core)
+find_package(Qt6 REQUIRED COMPONENTS Quick Core Widgets)
 
 # Qt 自动处理
 set(CMAKE_AUTOMOC ON)
@@ -20,6 +20,8 @@ set(PROJECT_SOURCES
     src/main.cpp
     src/MainWindow.cpp
     src/MainWindow.h
+    src/FileHandler.h
+    src/FileHandler.cpp
     resources.qrc
 )
 
@@ -40,6 +42,7 @@ qt_add_qml_module(MyQtApp
 target_link_libraries(MyQtApp PRIVATE
     Qt6::Core
     Qt6::Quick
+    Qt6::Widgets
 )
 
 # Windows 可执行文件设置

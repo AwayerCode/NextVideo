@@ -48,7 +48,11 @@ Window {
                     Layout.preferredHeight: 40
                     text: "Select"
                     onClicked: {
-                        console.log("Select clicked")
+                        var filePath = fileHandler.openFileDialog()
+                        if (filePath) {
+                            filePathInput.text = filePath
+                            console.log("Selected file:", filePath)
+                        }
                     }
                 }
             }
