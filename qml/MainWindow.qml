@@ -10,6 +10,17 @@ Window {
     visible: true
     title: qsTr("DelProcess")
     
+    Connections {
+        target: fileHandler
+        function onFileSelected(filePath) {
+            filePathField.text = filePath
+        }
+
+        function onLogUpdated(log) {
+            textArea.append(log)
+        }
+    }
+
     // 使用 ColumnLayout 作为主布局
     ColumnLayout {
         anchors.fill: parent
@@ -42,21 +53,25 @@ Window {
                         border.color: "#dddddd"
                         border.width: 1
                     }
-
-                    Connections {
-                    target: fileHandler
-                    function onFileSelected(filePath) {
-                        filePathField.text = filePath
-                    }
-                }
                 }
 
                 CustomButton {
+                    id: selectButton
                     Layout.preferredWidth: 100
                     Layout.preferredHeight: 40
                     text: "Select"
                     onClicked: {
                         fileHandler.openFileDialog() 
+                    }
+                }
+
+                CustomButton {
+                    id: deleteButton
+                    Layout.preferredWidth: 100
+                    Layout.preferredHeight: 40
+                    text: "Delete"
+                    onClicked: {
+                        fileHandler.deleteFile()
                     }
                 }
             }
@@ -86,6 +101,7 @@ Window {
                 clip: true
 
                 TextArea {
+                    id: textArea
                     readOnly: true
                     wrapMode: Text.WordWrap
                     selectByMouse: true

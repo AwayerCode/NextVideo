@@ -12,9 +12,14 @@ public:
 
 public slots:
     void openFileDialog();
-    
+    void deleteFile();
+
 signals:
     void fileSelected(const QString &filePath);
+    void logUpdated(const QString &log);
+
+private:
+    QString filePath { "" };
 };
 
 #endif
