@@ -11,7 +11,7 @@ public:
     explicit FileHandler(QObject *parent = nullptr);
 
 public slots:
-    QString openFileDialog();
+    void openFileDialog();
     
 signals:
     void fileSelected(const QString &filePath);

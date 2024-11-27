@@ -28,8 +28,9 @@ Window {
                 anchors.fill: parent
                 anchors.margins: 10
                 spacing: 10
-
+                
                 TextField {
+                    id: filePathField
                     Layout.fillWidth: true
                     Layout.preferredHeight: 40
                     placeholderText: "Select Process File..."
@@ -41,6 +42,13 @@ Window {
                         border.color: "#dddddd"
                         border.width: 1
                     }
+
+                    Connections {
+                    target: fileHandler
+                    function onFileSelected(filePath) {
+                        filePathField.text = filePath
+                    }
+                }
                 }
 
                 CustomButton {
@@ -48,11 +56,7 @@ Window {
                     Layout.preferredHeight: 40
                     text: "Select"
                     onClicked: {
-                        var filePath = fileHandler.openFileDialog()
-                        if (filePath) {
-                            filePathInput.text = filePath
-                            console.log("Selected file:", filePath)
-                        }
+                        fileHandler.openFileDialog() 
                     }
                 }
             }

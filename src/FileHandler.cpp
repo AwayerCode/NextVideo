@@ -6,7 +6,7 @@ FileHandler::FileHandler(QObject *parent) : QObject(parent)
 {
 }
 
-QString FileHandler::openFileDialog()
+void FileHandler::openFileDialog()
 {
     QString filePath = QFileDialog::getOpenFileName(
         nullptr,
@@ -14,9 +14,9 @@ QString FileHandler::openFileDialog()
         QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation),
         tr("All Files (*.*)"));
     
+    qDebug() << "Selected file: " << filePath;
+
     if (!filePath.isEmpty()) {
         emit fileSelected(filePath);
     }
-    
-    return filePath;
 }
