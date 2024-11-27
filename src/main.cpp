@@ -2,22 +2,21 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QDir>
-#include "backend.h"
+#include "MainWindow.h"
 
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
     QQmlApplicationEngine engine;
 
-    // 注册后端类
-    Backend backend;
-    engine.rootContext()->setContextProperty("backend", &backend);
+    // 注册 C++ 类型到 QML
+    qmlRegisterType<MainWindow>("MyApp", 1, 0, "MainWindow");
+
+    MainWindow mainWindow;
+    engine.rootContext()->setContextProperty("mainWindow", &mainWindow);
 
     const QUrl url = QUrl::fromLocalFile(QDir::currentPath() + "/qml/MainWindow.qml");
     engine.load(url);
-
-
-
 
     if (engine.rootObjects().isEmpty())
         return -1;

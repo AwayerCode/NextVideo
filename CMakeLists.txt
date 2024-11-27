@@ -7,18 +7,23 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 message(STATUS "Qt6_DIR: $ENV{Qt6_DIR}")
 message(STATUS "CMAKE_PREFIX_PATH: ${CMAKE_PREFIX_PATH}")
 
-find_package(Qt6 REQUIRED COMPONENTS Quick Core Qml QmlWorkerScript)
+set(Qt6_DIR "D:/Qt/6.8.0/msvc2022_64")
+set(CMAKE_PREFIX_PATH "D:/Qt/6.8.0/msvc2022_64")
+
+find_package(Qt6 REQUIRED COMPONENTS Quick Core Qml QmlWorkerScript Multimedia)
+
 
 # 设置自动处理 MOC、UIC、RCC
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
+
 # 项目源文件
 set(PROJECT_SOURCES
     src/main.cpp
-    src/backend.h
-    src/backend.cpp
+    src/MainWindow.cpp
+    src/MainWindow.h
     qml/MainWindow.qml
     qml/components/CustomButton.qml
 )
@@ -45,6 +50,8 @@ target_include_directories(MyQtApp PRIVATE
     ${Qt6Quick_INCLUDE_DIRS}
     ${Qt6Core_INCLUDE_DIRS}
 )
+include_directories(${FELGO_INCLUDE_DIR})
+
 
 # 链接 Qt 库
 target_link_libraries(MyQtApp PRIVATE
@@ -52,6 +59,7 @@ target_link_libraries(MyQtApp PRIVATE
     Qt6::Quick
     Qt6::Qml
     Qt6::QmlWorkerScript
+    Qt6::Multimedia
 )
 
 # 设置应用程序属性
