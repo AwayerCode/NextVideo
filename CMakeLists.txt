@@ -10,6 +10,7 @@ set(CMAKE_PREFIX_PATH "D:/Qt/6.8.0/msvc2022_64")
 
 # 添加子目录
 add_subdirectory(src/deleter)
+add_subdirectory(src/fileinfo)
 
 find_package(Qt6 REQUIRED COMPONENTS Quick Core Widgets)
 
@@ -44,6 +45,7 @@ target_link_libraries(PowerDelete PRIVATE
     Qt6::Quick
     Qt6::Widgets
     deleter
+    fileinfo
 )
 
 # Windows 可执行文件设置

@@ -2,6 +2,7 @@
 
 #include <QObject>
 #include "deleter/deleter.h"
+#include "fileinfo/fileinfo.h"
 
 class FileHandler : public QObject
 {
@@ -21,4 +22,5 @@ signals:
 private:
     QString m_selectedFile;
     Deleter m_deleter;
+    FileInfo m_fileInfo;
 };
