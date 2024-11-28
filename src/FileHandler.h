@@ -1,12 +1,12 @@
-#ifndef FILEHANDLER_H
-#define FILEHANDLER_H
+#pragma once
 
 #include <QObject>
-#include <QString>
+#include "deleter/deleter.h"
 
 class FileHandler : public QObject
 {
     Q_OBJECT
+
 public:
     explicit FileHandler(QObject *parent = nullptr);
 
@@ -15,11 +15,10 @@ public slots:
     void deleteFile();
 
 signals:
-    void fileSelected(const QString &filePath);
-    void logUpdated(const QString &log);
+    void fileSelected(const QString& filePath);
+    void logUpdated(const QString& log);
 
 private:
-    QString filePath { "" };
+    QString m_selectedFile;
+    Deleter m_deleter;
 };
-
-#endif

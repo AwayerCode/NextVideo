@@ -8,7 +8,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(Qt6_DIR "D:/Qt/6.8.0/msvc2022_64")
 set(CMAKE_PREFIX_PATH "D:/Qt/6.8.0/msvc2022_64")
 
-find_package(Qt6 REQUIRED COMPONENTS Quick Core Widgets)
+# 添加子目录
+add_subdirectory(src/deleter)
+
+find_package(Qt6 REQUIRED COMPONENTS Quick Core)
 
 # Qt 自动处理
 set(CMAKE_AUTOMOC ON)
@@ -32,7 +35,6 @@ qt_add_executable(MyQtApp ${PROJECT_SOURCES})
 qt_add_qml_module(MyQtApp
     URI MyQtApp
     VERSION 1.0
-    RESOURCE_PREFIX "/"  
     QML_FILES
         qml/MainWindow.qml
         qml/components/CustomButton.qml
@@ -42,12 +44,13 @@ qt_add_qml_module(MyQtApp
 target_link_libraries(MyQtApp PRIVATE
     Qt6::Core
     Qt6::Quick
-    Qt6::Widgets
+    deleter
 )
 
 # Windows 可执行文件设置
-set(CMAKE_WIN32_EXECUTABLE OFF)
-
+set_target_properties(MyQtApp PROPERTIES
+    WIN32_EXECUTABLE TRUE
+)
 
 # 设置输出目录
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
