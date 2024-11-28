@@ -114,7 +114,7 @@ Window {
                     Layout.preferredHeight: 40
                     text: "Start"
                     highlighted: true
-                    onClicked: fileHandler.deleteFile()
+                    onClicked: fileHandler.startOperation(operationComboBox.currentText)
                 }
             }
         }

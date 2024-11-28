@@ -17,7 +17,7 @@ bool FileInfo::getFileInfo(const QString& filePath)
 {
     QFileInfo fileInfo(filePath);
     if (!fileInfo.exists()) {
-        emit logMessage(QString("File not found: %1").arg(filePath));
+        emit logUpdated(QString("File not found: %1").arg(filePath));
         return false;
     }
 
@@ -32,7 +32,7 @@ bool FileInfo::getFileInfo(const QString& filePath)
         m_fileVersion = getWindowsFileVersion(filePath);
     }
 
-    emit logMessage(QString("File information loaded: %1").arg(m_fileName));
+    emit logUpdated(QString("File information loaded: %1").arg(m_fileName));
     return true;
 }
 

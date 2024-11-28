@@ -21,7 +21,7 @@ public:
     bool isExecutable() const { return m_isExecutable; }
 
 signals:
-    void logMessage(const QString& message);
+    void logUpdated(const QString& message);
 
 private:
     QString m_fileName;
