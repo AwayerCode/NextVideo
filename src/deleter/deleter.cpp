@@ -1,5 +1,4 @@
-#include "Deleter.h"
-
+#include "deleter.h"
 #include <QFile>
 #include <QProcess>
 #include <QDebug>
@@ -19,24 +18,24 @@ bool Deleter::deleteFile(const QString& filePath)
 {
     QFile file(filePath);
     if (!file.exists()) {
-        emit logMessage(QString("文件不存在: %1").arg(filePath));
+        emit logMessage(QString("File not found: %1").arg(filePath));
         return false;
     }
 
     QString fileName = QFileInfo(filePath).fileName();
     if (isProcessRunning(fileName)) {
-        emit logMessage(QString("正在终止进程: %1").arg(fileName));
+        emit logMessage(QString("Terminating process: %1").arg(fileName));
         if (!killProcess(fileName)) {
-            emit logMessage(QString("无法终止进程: %1").arg(fileName));
+            emit logMessage(QString("Failed to terminate process: %1").arg(fileName));
             return false;
         }
     }
 
     if (file.remove()) {
-        emit logMessage(QString("成功删除文件: %1").arg(filePath));
+        emit logMessage(QString("Successfully deleted file: %1").arg(filePath));
         return true;
     } else {
-        emit logMessage(QString("删除文件失败: %1").arg(filePath));
+        emit logMessage(QString("Failed to delete file: %1").arg(filePath));
         return false;
     }
 }

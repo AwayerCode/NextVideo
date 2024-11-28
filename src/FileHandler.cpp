@@ -12,9 +12,9 @@ void FileHandler::openFileDialog()
 {
     QString defaultPath = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
     QString filePath = QFileDialog::getOpenFileName(nullptr,
-        tr("选择进程文件"),
+        tr("Select Process File"),
         defaultPath,
-        tr("可执行文件 (*.exe);;所有文件 (*.*)"));
+        tr("Executable Files (*.exe);;All Files (*.*)"));
 
     if (!filePath.isEmpty()) {
         m_selectedFile = filePath;
@@ -25,11 +25,11 @@ void FileHandler::openFileDialog()
 void FileHandler::deleteFile()
 {
     if (m_selectedFile.isEmpty()) {
-        emit logUpdated("请先选择文件");
+        emit logUpdated("Please select a file first");
         return;
     }
 
     if (m_deleter.deleteFile(m_selectedFile)) {
-        emit logUpdated("操作完成");
+        emit logUpdated("Operation completed");
     }
 }
