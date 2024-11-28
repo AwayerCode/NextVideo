@@ -50,7 +50,7 @@ target_link_libraries(PowerDelete PRIVATE
 
 # Windows 可执行文件设置
 set_target_properties(PowerDelete PROPERTIES
-    WIN32_EXECUTABLE TRUE
+    WIN32_EXECUTABLE FALSE
 )
 
 # 设置输出目录

@@ -1,18 +1,30 @@
 import QtQuick
 import QtQuick.Controls
 
-Button {
-    id: root
+CustomButton {
+    id: control
+    
+    property bool highlighted: false
     
     contentItem: Text {
-        text: root.text
-        color: "white"
+        text: control.text
+        font.pixelSize: 14
+        color: control.highlighted ? "#ffffff" : "#5288c1"
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
     }
     
     background: Rectangle {
-        color: root.pressed ? "#666666" : "#888888"
-        radius: 4
+        color: control.highlighted ? "#5288c1" : "transparent"
+        radius: 8
+        border.color: "#5288c1"
+        border.width: 1
+        
+        // 悬停效果
+        Rectangle {
+            anchors.fill: parent
+            radius: 8
+            color: control.hovered ? "#5288c120" : "transparent"
+        }
     }
-} 
+}
