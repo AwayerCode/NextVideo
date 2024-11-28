@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(MyQtApp VERSION 1.0 LANGUAGES CXX)
+project(PowerDelete VERSION 1.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -21,19 +21,17 @@ set(CMAKE_AUTOUIC ON)
 # 源文件
 set(PROJECT_SOURCES
     src/main.cpp
-    src/MainWindow.cpp
-    src/MainWindow.h
     src/FileHandler.h
     src/FileHandler.cpp
     resources.qrc
 )
 
 # 添加可执行文件
-qt_add_executable(MyQtApp ${PROJECT_SOURCES})
+qt_add_executable(PowerDelete ${PROJECT_SOURCES})
 
 # QML 模块
-qt_add_qml_module(MyQtApp
-    URI MyQtApp
+qt_add_qml_module(PowerDelete
+    URI PowerDelete
     VERSION 1.0
     QML_FILES
         qml/MainWindow.qml
@@ -41,7 +39,7 @@ qt_add_qml_module(MyQtApp
 )
 
 # 链接库
-target_link_libraries(MyQtApp PRIVATE
+target_link_libraries(PowerDelete PRIVATE
     Qt6::Core
     Qt6::Quick
     Qt6::Widgets
@@ -49,7 +47,7 @@ target_link_libraries(MyQtApp PRIVATE
 )
 
 # Windows 可执行文件设置
-set_target_properties(MyQtApp PROPERTIES
+set_target_properties(PowerDelete PROPERTIES
     WIN32_EXECUTABLE TRUE
 )
 
@@ -61,9 +59,9 @@ if(WIN32)
     get_target_property(QT_QMAKE_EXECUTABLE Qt6::qmake IMPORTED_LOCATION)
     get_filename_component(QT_BIN_DIR "${QT_QMAKE_EXECUTABLE}" DIRECTORY)
     
-    add_custom_command(TARGET MyQtApp POST_BUILD
+    add_custom_command(TARGET PowerDelete POST_BUILD
         COMMAND "${QT_BIN_DIR}/windeployqt.exe"
                 --qmldir "${CMAKE_SOURCE_DIR}/qml"
-                "$<TARGET_FILE:MyQtApp>"
+                "$<TARGET_FILE:PowerDelete>"
     )
 endif() 

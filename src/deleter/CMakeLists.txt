@@ -8,8 +8,8 @@ find_package(Qt6 REQUIRED COMPONENTS Core)
 
 add_library(deleter
     STATIC
-    deleter.cpp
-    deleter.h
+    Deleter.cpp
+    Deleter.h
 )
 
 target_include_directories(deleter

@@ -8,7 +8,7 @@ Window {
     width: 800
     height: 600
     visible: true
-    title: qsTr("DelProcess")
+    title: qsTr("PowerDelete")
     
     Connections {
         target: fileHandler

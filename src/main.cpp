@@ -9,6 +9,9 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
     
+    app.setApplicationName("PowerDelete");
+    app.setApplicationVersion("1.0");
+    
     QQmlApplicationEngine engine;
 
     FileHandler fileHandler;

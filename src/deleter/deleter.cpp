@@ -1,4 +1,5 @@
-#include "deleter.h"
+#include "Deleter.h"
+
 #include <QFile>
 #include <QProcess>
 #include <QDebug>
