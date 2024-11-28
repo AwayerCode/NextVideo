@@ -1,8 +1,9 @@
-# 设置 Qt 路径
-set(Qt6_DIR "D:/Qt/6.8.0/msvc2022_64")
-set(CMAKE_PREFIX_PATH "D:/Qt/6.8.0/msvc2022_64")
+# 启用 Qt 自动处理
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
 
-# 查找 Qt Core 组件
+# 需要在使用 Qt6::Core 之前找到它
 find_package(Qt6 REQUIRED COMPONENTS Core)
 
 add_library(deleter
@@ -19,4 +20,9 @@ target_include_directories(deleter
 target_link_libraries(deleter
     PRIVATE
         Qt6::Core
+)
+
+# 设置静态库输出目录
+set_target_properties(deleter PROPERTIES
+    ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
 ) 

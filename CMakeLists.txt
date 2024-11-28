@@ -11,7 +11,7 @@ set(CMAKE_PREFIX_PATH "D:/Qt/6.8.0/msvc2022_64")
 # 添加子目录
 add_subdirectory(src/deleter)
 
-find_package(Qt6 REQUIRED COMPONENTS Quick Core)
+find_package(Qt6 REQUIRED COMPONENTS Quick Core Widgets)
 
 # Qt 自动处理
 set(CMAKE_AUTOMOC ON)
@@ -44,6 +44,7 @@ qt_add_qml_module(MyQtApp
 target_link_libraries(MyQtApp PRIVATE
     Qt6::Core
     Qt6::Quick
+    Qt6::Widgets
     deleter
 )
 
