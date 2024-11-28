@@ -22,3 +22,5 @@ CMakeUserPresets.json
 moc_*.cpp
 moc_*.h
 qrc_*.cpp 
+
+.vs/
