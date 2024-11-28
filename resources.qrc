@@ -2,6 +2,5 @@
 <RCC>
     <qresource prefix="/">
         <file>qml/MainWindow.qml</file>
-        <file>qml/components/CustomButton.qml</file>
     </qresource>
 </RCC> 

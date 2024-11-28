@@ -36,7 +36,6 @@ qt_add_qml_module(PowerDelete
     VERSION 1.0
     QML_FILES
         qml/MainWindow.qml
-        qml/components/CustomButton.qml
 )
 
 # 链接库

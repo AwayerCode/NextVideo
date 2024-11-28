@@ -2,7 +2,6 @@ import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Layouts
-import "components"
 
 Window {
     width: 800
@@ -44,6 +43,7 @@ Window {
                     Layout.fillWidth: true
                     Layout.preferredHeight: 40
                     placeholderText: "Select Process File..."
+                    verticalAlignment: TextInput.AlignVCenter
                     selectByMouse: true
                     font.pixelSize: 14
                     color: "#ffffff"
