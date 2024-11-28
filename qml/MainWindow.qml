@@ -55,7 +55,6 @@ Window {
                         border.color: parent.activeFocus ? "#5288c1" : "transparent"
                         border.width: 1
 
-                        // 添加聚焦动画
                         Behavior on border.color {
                             ColorAnimation { duration: 150 }
                         }
@@ -69,6 +68,45 @@ Window {
                     text: "Select"
                     onClicked: fileHandler.openFileDialog()
                 }
+
+                ComboBox {
+                    id: operationComboBox
+                    Layout.preferredWidth: 120
+                    Layout.preferredHeight: 40
+                    model: ["Delete", "File Info"]
+                    
+                    background: Rectangle {
+                        color: "#151d27"
+                        radius: 8
+                        border.color: parent.down ? "#5288c1" : "transparent"
+                        border.width: 1
+                    }
+                    
+                    contentItem: Text {
+                        text: operationComboBox.displayText
+                        color: "#ffffff"
+                        font.pixelSize: 14
+                        verticalAlignment: Text.AlignVCenter
+                        horizontalAlignment: Text.AlignHCenter
+                    }
+                    
+                    delegate: ItemDelegate {
+                        width: operationComboBox.width
+                        height: 40
+                        
+                        contentItem: Text {
+                            text: modelData
+                            color: highlighted ? "#ffffff" : "#5288c1"
+                            font.pixelSize: 14
+                            verticalAlignment: Text.AlignVCenter
+                            horizontalAlignment: Text.AlignHCenter
+                        }
+                        
+                        background: Rectangle {
+                            color: highlighted ? "#5288c1" : "#151d27"
+                        }
+                    }
+                }   
 
                 Button {
                     id: startButton
@@ -150,7 +188,6 @@ Window {
                         placeholderTextColor: "#8596a7"
                         background: null
 
-                        // 自定义选择颜色
                         selectionColor: "#5288c1"
                         selectedTextColor: "#ffffff"
                     }
